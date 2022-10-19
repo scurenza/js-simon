@@ -32,8 +32,8 @@ let winnerArray = [];
 // Al click del bottone
 startBtn.addEventListener("click", function() {
     // Pulisco i campi
-    let rndNumbers = [];
-    let userArray = [];
+    // let rndNumbers = [];
+    // let userArray = [];
     let timer = 29;
     timerDisplay.innerHTML = 30;
     
@@ -64,11 +64,11 @@ startBtn.addEventListener("click", function() {
     }, 1000)
 
     // Faccio partire il countdown per il cambio di stato e l'inizio della nuova fase
-    setTimeout(removeOutput,3000);
+    setTimeout(removeOutput,30000);
 
-    setTimeout(askInput,3050);
+    setTimeout(askInput,30010);
 
-    
+    console.log(winnerArray);
     
     
 });
@@ -105,21 +105,14 @@ function askInput () {
         }
 }
         for(let i = 0; i <= userArray.length; i++) {
-            if (userArray[i] === rndNumbers[i]) {
-                console.log(userArray[i]);
+            if (rndNumbers.includes(userArray[i])) {
+                winnerArray.push(userArray[i]);
             }
         }
-        
-
+        resultTitle.innerHTML = `Bravo! Ne hai indovinati ${winnerArray.length} e sono ${winnerArray}`;
+    return winnerArray;
 }
 
 
-   // // Paragono l'array dato dall'utente con quello generato in modo rnd
-//    for(let i = 0; i < userArray.length; i++) {
-//     if (rndNumbers.includes(userArray[i])) {
-//         winnerArray.push(userArray[i])
-//     }
-// }
-// result.classList.remove("hidden");
-// return winnerArray;
+
 
