@@ -20,13 +20,23 @@ Al click del bottone:
 let rndNumbers = [];
 const startBtn = document.querySelector("button");
 const numbersOutput = document.querySelector("h2");
-let timer = 30;
+const resultTitle = document.querySelector("h3");
+const result = document.getElementById("result")
+let timer = 29;
 let timerDisplay = document.getElementById("timer");
+timerDisplay.innerHTML = 30;
+let userArray = [];
+let winnerArray = [];
+
 
 // Al click del bottone
 startBtn.addEventListener("click", function() {
     // Pulisco i campi
     let rndNumbers = [];
+    let userArray = [];
+    let timer = 29;
+    timerDisplay.innerHTML = 30;
+    
 
     // Genero un array con 5 numeri rnd unici tra loro
     while (rndNumbers.length < 6) {
@@ -40,9 +50,27 @@ startBtn.addEventListener("click", function() {
             
     }
 
-    // Faccio partire il timer
-    startTimer();
+    // Faccio partire l'output del countdown
+    let countdown = setInterval(function() {
+        if(timer >= 0) {
+            timerDisplay.innerHTML = timer;
+            timer--;
+            
+        } else {
+            clearInterval(countdown);
+            
+        }
+       
+    }, 1000)
 
+    // Faccio partire il countdown per il cambio di stato e l'inizio della nuova fase
+    setTimeout(removeOutput,3000);
+
+    setTimeout(askInput,3050);
+
+    console.log(winnerArray);
+    
+    
 });
 
 
@@ -57,15 +85,48 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-function startTimer () {
-    if (timer > 0) {
-    setInterval(function() {
-        timerDisplay.innerHTML = timer;
-        timer--;
-    }, 1000)
-    } else {
-        clearInterval(startTimer);
+
+
+function removeOutput () {
+    // Nascondo i numeri rnd
+    numbersOutput.classList.add("hidden");
+
+
+}
+    
+
+
+function askInput () {
+    while (userArray.length < 5) {
+        let userNum = parseInt(prompt("Dammi un numero"))
+    
+        if (!userArray.includes(userNum)) {
+            userArray.push(userNum)
+        }
+}
+   // // Paragono l'array dato dall'utente con quello generato in modo rnd
+    for(let i = 0; i < userArray.length; i++) {
+        if (rndNumbers.includes(userArray[i])) {
+            winnerArray.push(userArray[i])
+        }
     }
+    result.classList.remove("hidden");
+    return winnerArray;
 }
 
 
+    // // Con un while chiedo all'utente in input 5 numeri
+    // while (userArray.length < 5) {
+    //     let userNum = parseInt(prompt("Dammi un numero"))
+
+    //     if (!userArray.includes(userNum)) {
+    //         userArray.push(userNum)
+    //     }
+    // }
+    // // Paragono l'array dato dall'utente con quello generato in modo rnd
+    // for(let i = 0; i < userArray.length; i++) {
+    //     if (rndNumbers.includes(userArray[i])) {
+    //         winnerArray.push(userArray[i])
+    //     }
+    // }
+    // result.classList.remove("hidden");
