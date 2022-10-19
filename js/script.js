@@ -68,7 +68,7 @@ startBtn.addEventListener("click", function() {
 
     setTimeout(askInput,3050);
 
-    console.log(winnerArray);
+    
     
     
 });
@@ -104,29 +104,22 @@ function askInput () {
             userArray.push(userNum)
         }
 }
-   // // Paragono l'array dato dall'utente con quello generato in modo rnd
-    for(let i = 0; i < userArray.length; i++) {
-        if (rndNumbers.includes(userArray[i])) {
-            winnerArray.push(userArray[i])
+        for(let i = 0; i <= userArray.length; i++) {
+            if (userArray[i] === rndNumbers[i]) {
+                console.log(userArray[i]);
+            }
         }
-    }
-    result.classList.remove("hidden");
-    return winnerArray;
+        
+
 }
 
 
-    // // Con un while chiedo all'utente in input 5 numeri
-    // while (userArray.length < 5) {
-    //     let userNum = parseInt(prompt("Dammi un numero"))
+   // // Paragono l'array dato dall'utente con quello generato in modo rnd
+//    for(let i = 0; i < userArray.length; i++) {
+//     if (rndNumbers.includes(userArray[i])) {
+//         winnerArray.push(userArray[i])
+//     }
+// }
+// result.classList.remove("hidden");
+// return winnerArray;
 
-    //     if (!userArray.includes(userNum)) {
-    //         userArray.push(userNum)
-    //     }
-    // }
-    // // Paragono l'array dato dall'utente con quello generato in modo rnd
-    // for(let i = 0; i < userArray.length; i++) {
-    //     if (rndNumbers.includes(userArray[i])) {
-    //         winnerArray.push(userArray[i])
-    //     }
-    // }
-    // result.classList.remove("hidden");
